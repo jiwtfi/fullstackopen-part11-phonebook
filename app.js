@@ -27,7 +27,10 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
-app.get('/health', (req, res) => res.sendStatus(200));
+app.get('/health', (req, res) => {
+  console.log('Health check complete');
+  return res.sendStatus(200)
+});
 
 app.get('/info', (req, res) => {
   return Person.find({}).then(persons => {
